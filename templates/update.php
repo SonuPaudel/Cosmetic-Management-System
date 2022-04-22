@@ -1,8 +1,8 @@
 <?php
-$title = "INSERT";
+$title = "UPDATE";
 include_once('header.php');
 $id = $name = $brand = $cost = $supplier = "";
-if (isset($_GET["btninsert"])) {
+if (isset($_GET["btnupdate"])) {
     $id = $_GET["id"];
     $name = $_GET["name"];
     $brand = $_GET["brand"];
@@ -13,28 +13,25 @@ if (isset($_GET["btninsert"])) {
         die("Error in connection");
     }
 
-    $query = "INSERT INTO `cosmetic_details`(`id`,`name`,`brand`,`cost`,`supplier`) VALUES (NULL,'$name','$brand','$cost','$supplier');";
+    $query = "UPDATE `cosmetic_details` SET `name` = '$name', `brand` = '$brand', `cost` = '$cost', `supplier` = '$supplier' WHERE `cosmetic_details`.`id` = $id";
     if (mysqli_query($conn, $query)) {
-        echo "information saved";
+        echo "Information updated";
     } else {
-        echo "information save fail succesfully";
+        echo "Information update fail";
     }
 }
 ?>
 
-
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Student Register</title>
+    <title>Cometic Update</title>
 </head>
 
 <body>
     <div class="container my-5">
         <center>
-            <form action="insert.php" method="get">
+            <form action="update.php" method="get">
                 <table>
                     <tr>
                         <th>ID</th>
@@ -60,10 +57,13 @@ if (isset($_GET["btninsert"])) {
 
                     <tr>
                         <th></th>
-                        <td><input class="btn btn-primary" type="submit" value="submit" name="btninsert"></td>
+                        <td><input class="btn btn-primary" type="submit" value="submit" name="btnupdate"></td>
                     </tr>
 
                 </table>
             </form>
         </center>
     </div>
+</body>
+
+</html>
