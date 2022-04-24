@@ -29,6 +29,11 @@ include_once('../templates/header.php');
                     </a>
                 </div>
                 <div>
+                    <a href="../templates/deleteindividual.php" class="card-single btn">
+                        <h1>Delete</h1>
+                    </a>
+                </div>
+                <div>
                     <a href="../templates/logout.php" class="card-single btn">
                         <h1>Logout</h1>
                     </a>

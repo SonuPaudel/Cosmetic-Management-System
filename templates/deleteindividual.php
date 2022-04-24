@@ -1,5 +1,5 @@
 <?php
-$title = "Show Individual";
+$title = "Delete Individual";
 include_once("db_conn.php");
 include_once("header.php");
 ?>
