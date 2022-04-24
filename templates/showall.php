@@ -1,8 +1,8 @@
 <?php
-$title = "INSERT";
+$title = "SHOW ALL";
 include_once('header.php');
-$id = $name = $brand = $cost = $supplier = $productfor = $data = "";
-if (isset($_GET["btninsert"])) {
+$id = $name = $brand = $cost = $supplier = $productfor = $date = "";
+if (isset($_GET["btnshowall"])) {
     $id = $_GET["id"];
     $name = $_GET["name"];
     $brand = $_GET["brand"];
@@ -15,7 +15,7 @@ if (isset($_GET["btninsert"])) {
         die("Error in connection");
     }
 
-    $query = "INSERT INTO `cosmetic_details`(`id`,`name`,`brand`,`cost`,`supplier`,`productfor`,`date`) VALUES (NULL,'$name','$brand','$cost','$supplier','$productfor','$date');";
+    $query = "SELECT * FROM `cosmetic_details`";
     if (mysqli_query($conn, $query)) {
         echo "information saved";
     } else {
@@ -23,20 +23,16 @@ if (isset($_GET["btninsert"])) {
     }
 }
 ?>
-
-
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Student Register</title>
+    <title>Cometic Update</title>
 </head>
 
 <body>
     <div class="container my-5">
         <center>
-            <form action="insert.php" method="get">
+            <form action="showall.php" method="get">
                 <table>
                     <tr>
                         <th>ID</th>
@@ -63,7 +59,6 @@ if (isset($_GET["btninsert"])) {
                             </select>
                         </td>
                     </tr>
-
                     <tr>
                         <th>Product Supplier</th>
                         <td><input type="text" name="supplier" value="<?php $supplier; ?>"></td>
@@ -75,10 +70,13 @@ if (isset($_GET["btninsert"])) {
 
                     <tr>
                         <th></th>
-                        <td><input class="btn btn-primary" type="submit" value="submit" name="btninsert"></td>
+                        <td><input class="btn btn-primary" type="submit" value="submit" name="btnshowall"></td>
                     </tr>
 
                 </table>
             </form>
         </center>
     </div>
+</body>
+
+</html>

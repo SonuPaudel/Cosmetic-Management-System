@@ -10,7 +10,7 @@ if (isset($_GET["btndelete"])) {
         die("Error in connection");
     }
 
-    $query = "delete from cosmetic_details where`id` = $id";
+    $query = "DELETE FROM `cosmetic_details` where`id` = $id";
     if (mysqli_query($conn, $query)) {
         echo "Information Deleted";
     } else {
