@@ -18,7 +18,7 @@ include_once('../templates/header.php');
 
                 </div>
                 <div>
-                    <a href="showindividual.php" class="card-single btn">
+                    <a href="../templates/showindividual.php" class="card-single btn">
                         <h1>Show Individual</h1>
                     </a>
                 </div>
