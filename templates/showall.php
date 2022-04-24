@@ -1,82 +1,78 @@
 <?php
-$title = "SHOW ALL";
-include_once('header.php');
-$id = $name = $brand = $cost = $supplier = $productfor = $date = "";
-if (isset($_GET["btnshowall"])) {
-    $id = $_GET["id"];
-    $name = $_GET["name"];
-    $brand = $_GET["brand"];
-    $cost = $_GET["cost"];
-    $supplier = $_GET["supplier"];
-    $productfor = $_GET["productfor"];
-    $date = $_GET["date"];
-    $conn = mysqli_connect("localhost", "root", "", "cosmetic_management");
-    if (!$conn) {
-        die("Error in connection");
-    }
+$title = "Show All";
+include_once("db_conn.php");
+include_once("header.php");
 
-    $query = "SELECT * FROM `cosmetic_details`";
-    if (mysqli_query($conn, $query)) {
-        echo "information saved";
-    } else {
-        echo "information save fail succesfully";
-    }
-}
 ?>
-<html>
-
-<head>
-    <title>Cometic Update</title>
-</head>
 
 <body>
-    <div class="container my-5">
-        <center>
-            <form action="showall.php" method="get">
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <td><input type="number" name="id" value="<?php $id; ?>"></td>
-                    </tr>
-                    <tr>
-                        <th>Product Name</th>
-                        <td><input type="text" name="name" value="<?php $name; ?>"></td>
-                    </tr>
-                    <tr>
-                        <th>Product Brand</th>
-                        <td><input type="text" name="brand" value="<?php $brand; ?>"></td>
-                    </tr>
-                    <tr>
-                        <th>Product Cost</th>
-                        <td><input type="number" name="cost" value="<?php $cost; ?>"></td>
-                    </tr>
-                    <tr>
-                        <th>Product For</th>
-                        <td><select name="productfor">
-                                <option value="Select">Select</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Product Supplier</th>
-                        <td><input type="text" name="supplier" value="<?php $supplier; ?>"></td>
-                    </tr>
-                    <tr>
-                        <th>Purchase Date</th>
-                        <td><input type="date" name="date" value="<?php $date; ?>"></td>
-                    </tr>
+    <div class="container mt-5 ">
+        <div class="wrap">
+            <h1><?php echo $title; ?></h1>
+            <h6 class="text-danger">
+                <?php if (isset($_GET['error'])) { ?>
+                    <p class="error"><?php echo $_GET['error']; ?></p>
+                <?php } ?>
 
-                    <tr>
-                        <th></th>
-                        <td><input class="btn btn-primary" type="submit" value="submit" name="btnshowall"></td>
-                    </tr>
+            </h6>
+        </div>
+        <div class="cnt-wrapbox-body mt-5">
+            <div class="table-responsive">
+                <table width="100%">
+                    <thead>
+                        <tr>
+                            <td>Product ID</td>
+                            <td>Product Name</td>
+                            <td>Brand</td>
+                            <td>Price</td>
+                            <td>Supplier</td>
+                            <td>For</td>
+                            <td>Purchase Date</td>
+                            <td>Action</td>
 
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        <?php
+
+                        $sql = "Select * from `cosmetic_details`";
+                        $result = mysqli_query($conn, $sql);
+                        if ($result) {
+
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $id = $row['id'];
+                                $pname = $row['name'];
+                                $brand = $row['brand'];
+                                $cost = $row['cost'];
+                                $supplier = $row['supplier'];
+                                $gender = $row['productfor'];
+                                $date = $row['date'];
+                                echo '<tr>
+                                            <td>' . $id . '</td>
+                                            <td>' . $pname . '</td>
+                                            <td>' . $brand . '</td>
+                                            <td>' . $cost . '</td>
+                                            <td>' . $supplier . '</td>
+                                            <td>' . $gender . '</td>
+                                            <td>' . $date . '</td>
+                                            <td>
+                                        <a href="update.php?updateid=' . $id . '" name="updateid" class="btn btn-primary m-2 text-light">Update</a>
+                                        <a href="delete.php?deleteid=' . $id . '" class="btn btn-danger m-2 text-light">Delete</a>
+                                        
+                                        </td> 
+                                        </tr>';
+                            }
+                        }
+                        ?>
+                    </tbody>
                 </table>
-            </form>
-        </center>
-    </div>
-</body>
 
-</html>
+
+
+            </div>
+
+
+</body>

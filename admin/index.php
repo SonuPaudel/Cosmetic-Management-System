@@ -4,17 +4,38 @@ include_once('../templates/header.php');
 ?>
 
 <body>
-    <div class="cont-wrapper">
-        <div class="container">
-            <a href="../templates/showall.php" class="btn btn-primary py-3 px-3 mx-1">Show All</a>
-            <a href="" class="btn btn-primary py-3 px-3 mx-1">Show individual</a>
-            <a href="../templates/insert.php" class="btn btn-primary py-3 px-4 mx-1">Insert</a><br><br>
-            <a href="../templates/update.php" class=" btn btn-primary py-3 px-3 mx-2">Update</a>
-            <a href="../templates/delete.php" class="btn btn-primary py-3 px-4 mx-4">Delete</a>
-            <a href="" class="btn btn-primary py-3 mx-4">Logout</a>
-
-        </div>
+    <div class="wrap">
+        <h1><?php echo $title; ?></h1>
     </div>
+    <div class="container pt-5 mt-5">
+        <main>
+
+            <div class="cards">
+                <div>
+                    <a href="../templates/showall.php" class="card-single btn">
+                        <h1>Show All</h1>
+                    </a>
+
+                </div>
+                <div>
+                    <a href="showindividual.php" class="card-single btn">
+                        <h1>Show Individual</h1>
+                    </a>
+                </div>
+
+                <div>
+                    <a href="../templates/insert.php" class="card-single btn">
+                        <h1>Insert</h1>
+                    </a>
+                </div>
+                <div>
+                    <a href="../templates/logout.php" class="card-single btn">
+                        <h1>Logout</h1>
+                    </a>
+                </div>
+        </main>
+    </div>
+
 
 
 </body>

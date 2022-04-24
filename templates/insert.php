@@ -1,6 +1,7 @@
 <?php
 $title = "INSERT";
 include_once('header.php');
+include_once('db_conn.php');
 $id = $name = $brand = $cost = $supplier = $productfor = $data = "";
 if (isset($_GET["btninsert"])) {
     $id = $_GET["id"];
@@ -10,14 +11,13 @@ if (isset($_GET["btninsert"])) {
     $supplier = $_GET["supplier"];
     $productfor = $_GET["productfor"];
     $date = $_GET["date"];
-    $conn = mysqli_connect("localhost", "root", "", "cosmetic_management");
     if (!$conn) {
         die("Error in connection");
     }
 
     $query = "INSERT INTO `cosmetic_details`(`id`,`name`,`brand`,`cost`,`supplier`,`productfor`,`date`) VALUES (NULL,'$name','$brand','$cost','$supplier','$productfor','$date');";
     if (mysqli_query($conn, $query)) {
-        echo "information saved";
+        header("Location: showall.php?error=Record Added Succesfully");
     } else {
         echo "information save fail succesfully";
     }
@@ -40,19 +40,19 @@ if (isset($_GET["btninsert"])) {
                 <table>
                     <tr>
                         <th>ID</th>
-                        <td><input type="number" name="id" value="<?php $id; ?>"></td>
+                        <td><input type="number" name="id" value="<?php echo $id; ?>"></td>
                     </tr>
                     <tr>
                         <th>Product Name</th>
-                        <td><input type="text" name="name" value="<?php $name; ?>"></td>
+                        <td><input type="text" name="name" value="<?php echo $name; ?>"></td>
                     </tr>
                     <tr>
                         <th>Product Brand</th>
-                        <td><input type="text" name="brand" value="<?php $brand; ?>"></td>
+                        <td><input type="text" name="brand" value="<?php echo $brand; ?>"></td>
                     </tr>
                     <tr>
                         <th>Product Cost</th>
-                        <td><input type="number" name="cost" value="<?php $cost; ?>"></td>
+                        <td><input type="number" name="cost" value="<?php echo $cost; ?>"></td>
                     </tr>
                     <tr>
                         <th>Product For</th>
@@ -66,11 +66,11 @@ if (isset($_GET["btninsert"])) {
 
                     <tr>
                         <th>Product Supplier</th>
-                        <td><input type="text" name="supplier" value="<?php $supplier; ?>"></td>
+                        <td><input type="text" name="supplier" value="<?php echo $supplier; ?>"></td>
                     </tr>
                     <tr>
                         <th>Purchase Date</th>
-                        <td><input type="date" name="date" value="<?php $date; ?>"></td>
+                        <td><input type="date" name="date" value="<?php echo $date; ?>"></td>
                     </tr>
 
                     <tr>
